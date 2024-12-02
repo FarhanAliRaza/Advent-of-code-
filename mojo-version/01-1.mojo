@@ -4,10 +4,8 @@ from collections import List
 
 
 def main():
-    var lines = List[String]()
-    var file = open("day-1.txt", "r")
-    var data = file.read()
-    lines = data.splitlines()
+    file = open("day-1.txt", "r")
+    lines = file.read().splitlines()
     list_a =  List[Int]()
     list_b = List[Int]()
     for i in range(len(lines)):
