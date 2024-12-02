@@ -14,13 +14,7 @@ fn is_increasing (v: Vec<i32>)-> bool{
     let true_count = res.iter().filter(|x| **x == true).count();
     let false_count = res.iter().filter(|x| **x == false).count();
 
-    if true_count > false_count {
-        return  true;
-    }
-    else{
-        return  false;
-    }
-   
+    return true_count > false_count 
 }
 
 
