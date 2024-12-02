@@ -1,1 +1,1 @@
-# Solving Advent of code and learnign Rust
+# Solving Advent of code and learnign Rust + Mojo
