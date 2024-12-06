@@ -110,7 +110,86 @@ fn main() {
 
     let lines : Vec<&str> = contents.split("\n").collect();
 
-    let mut sum = 0;
 
-    println!("{}", sum)
+    let mut vov: Vec<Vec<char>> = [].to_vec();
+
+    let mut p =  Position{
+        x:0,
+        y:0,
+        direction: *right,
+        matrix: vov.clone(),
+        height:0,
+        width: 1
+    };
+
+
+    for (y, line) in lines.iter().enumerate() {
+        let voc: Vec<char> = line.chars().collect();
+        if voc.len() > 0 {
+            if voc.contains(left) {
+                let x = voc.iter().position(|&i| i == *left).unwrap();
+                p.x = x;
+                p.y = y;
+                p.direction = *left;
+            }else if voc.contains(up){
+                println!("{:?}", voc);
+                let x = voc.iter().position(|&i| i == *up).unwrap();
+                p.x = x;
+                p.y = y;
+                p.direction = *up;
+            } else if voc.contains(right){
+                let x = voc.iter().position(|&i| i == *right).unwrap();
+                p.x = x;
+                p.y = y;
+                p.direction = *right;
+            } else if  voc.contains(down){
+                let x = voc.iter().position(|&i| i == *down).unwrap();
+                p.x = x;
+                p.y = y;
+                p.direction = *down;                
+
+            }
+                vov.push(voc);
+
+            
+        }
+    }
+
+    let height = vov.len();
+    let width = vov[0].len();
+    p.matrix = vov;
+    p.height = height;
+    p.width = width;
+
+    let mut visited: Vec<String> = Vec::new();
+    let mut sum = 0;
+    
+    loop {
+        println!("x: {} y: {} direction: {:?}", p.x, p.y, p.direction);
+        if p.direction == *outside {
+            break
+        }else{
+            let x = p.x;
+            let y = p.y;
+            let position = format!("{x}|{y}");
+            if visited.contains(&position) {
+            }else{
+                visited.push(position);
+            }
+            sum  += 1;
+        }
+        p.next();
+
+    }
+
+    // println!("{:?}", p);
+    // p.next();
+    // println!("{:?}", p);
+    // p.next();
+
+    // println!("{:?}", p);
+
+
+
+    println!("{:?}, {}", sum, visited.len())
 }
